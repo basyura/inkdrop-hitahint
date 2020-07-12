@@ -3,13 +3,11 @@
   "main": "./lib/hitahint",
   "version": "0.0.0",
   "description": "A short description of your package",
-  "keywords": [
-  ],
-  "repository": "https://github.com/inkdropapp/hitahint",
+  "keywords": [],
+  "repository": "https://github.com/basyura/hitahint",
   "license": "MIT",
   "engines": {
     "inkdrop": "^4.x"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
