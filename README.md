@@ -2,6 +2,14 @@
 
 hit a hint for preview mode.
 
+
+```md
+* http://yahoo.co.jp
+* http://google.com
+* [twitter](http://twitter.com)
+* [Inkdrop](inkdrop://note:H914Dy7OD)
+```
+
 ![Screenshot](https://raw.githubusercontent.com/basyura/inkdrop-hitahint/master/images/preview.png)
 
 ## Install
