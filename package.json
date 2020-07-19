@@ -1,7 +1,7 @@
 {
   "name": "hitahint",
   "main": "./lib/hitahint",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "hit a hint",
   "keywords": [],
   "repository": "https://github.com/basyura/hitahint",
