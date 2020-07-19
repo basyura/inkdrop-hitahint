@@ -7,7 +7,7 @@ hit a hint for preview mode.
 * http://yahoo.co.jp
 * http://google.com
 * [twitter](http://twitter.com)
-* [Inkdrop](inkdrop://note:H914Dy7OD)
+* [Inkdrop](inkdrop://note:ABCDEFGHI)
 ```
 
 ![Screenshot](https://raw.githubusercontent.com/basyura/inkdrop-hitahint/master/images/preview.png)
@@ -18,7 +18,7 @@ hit a hint for preview mode.
 ipm install hitahint
 ```
 
-## Keybindings
+## Commands
 
 | Command       | Explanation |
 | ------------- | ----------- |
