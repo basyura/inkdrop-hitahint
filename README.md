@@ -36,6 +36,10 @@ hintcharacters: {
 
 ## CHANGELOG
 
+0.4.0 - 2021/05/29
+
+* fix note link and inner link
+
 0.3.0 - 2020/09/23
 
 * add dblclick-expansion-image:open support
