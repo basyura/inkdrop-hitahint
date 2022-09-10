@@ -4,7 +4,7 @@
   "version": "0.5.0",
   "description": "hit a hint",
   "keywords": [],
-  "repository": "https://github.com/basyura/inkdrop-hitahint",
+  "repository": "git@github.com:basyura/inkdrop-hitahint.git",
   "license": "MIT",
   "engines": {
     "inkdrop": "^4.x"
