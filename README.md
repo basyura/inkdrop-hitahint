@@ -36,6 +36,10 @@ hintcharacters: {
 
 ## CHANGELOG
 
+0.7.0 - 2023/10/24
+
+* add element's null check
+
 0.4.0 - 2021/05/29
 
 * fix note link and inner link
