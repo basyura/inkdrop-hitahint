@@ -36,22 +36,4 @@ hintcharacters: {
 
 ## CHANGELOG
 
-0.7.0 - 2023/10/24
-
-* add element's null check
-
-0.4.0 - 2021/05/29
-
-* fix note link and inner link
-
-0.3.0 - 2020/09/23
-
-* add dblclick-expansion-image:open support
-
-0.2.0 - 2020/07/27
-
-* add toc support
-
-0.1.0 - 2020/07/19
-
-* first release.
+* https://github.com/basyura/inkdrop-hitahint/commits/master/
