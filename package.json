@@ -7,7 +7,7 @@
   "repository": "git@github.com:basyura/inkdrop-hitahint.git",
   "license": "MIT",
   "engines": {
-    "inkdrop": "^4.x"
+    "inkdrop": "^6.0.0"
   },
   "dependencies": {}
 }
