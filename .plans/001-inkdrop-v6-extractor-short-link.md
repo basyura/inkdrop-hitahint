@@ -145,3 +145,30 @@
 - [x] `node --check lib/extractor.js`
 - [x] `npm_config_cache=/tmp/hitahint-npm-cache npm pack --dry-run`
 - [ ] Inkdrop Canary 実機での手動確認
+
+---
+
+# npm 配布ファイル整理計画
+
+## 背景
+
+- `.npmignore` がないため、`npm pack` は `.gitignore` を fallback として使っている
+- 現在の `.gitignore` は最小限で、開発用の `.plans/`、`.serena/`、`AGENTS.md` が tarball に含まれる
+- これらは Inkdrop plugin の実行や利用者向け配布には不要
+
+## 対応方針
+
+- [x] `.npmignore` を追加する
+- [x] `.plans/`、`.serena/`、`AGENTS.md` を配布対象から除外する
+- [x] `.DS_Store`、`npm-debug.log`、`node_modules/` も明示的に除外する
+- [x] `npm pack --dry-run` で除外結果を確認する
+
+## 完了条件
+
+- [x] `npm pack --dry-run` の tarball contents に `.plans/`、`.serena/`、`AGENTS.md` が表示されない
+- [x] plugin 実行に必要な `lib/`、`styles/`、`keymaps/`、`images/`、`README.md`、`LICENSE.md`、`CHANGELOG.md`、`package.json` は引き続き含まれる
+
+## 確認結果
+
+- [x] `npm_config_cache=/tmp/hitahint-npm-cache npm pack --dry-run`
+- [x] tarball contents は 11 files になり、`.plans/`、`.serena/`、`AGENTS.md` は含まれない
