@@ -1,0 +1,1 @@
+作業完了時は少なくとも差分確認と構文確認を行う。自動テストは未整備なので、必要に応じて Inkdrop 上で preview mode, editor mode, sidebar navigation, note list navigation, `hintcharacters` 設定を手動確認する。UI 変更がある場合は README やスクリーンショット更新も検討する。

@@ -1,0 +1,1 @@
+開発で使う主なコマンド: `npm install` で依存整備、`npm pack` で配布内容確認、`ipm install` で Inkdrop へインストール、`ipm link` でローカル開発ロード。簡易な構文確認には `node --check lib/<file>.js` を使える。検索は `rg` を優先する。

@@ -1,0 +1,1 @@
+Inkdrop 用の小規模プラグイン `hitahint`。プレビュー、エディタ、ノート一覧、サイドバー上のクリック可能要素にヒント文字を重ね、キーボードで選択できるようにする。主な実装は `lib/hitahint.js`（コマンド登録とヒント表示）、`lib/extractor.js`（DOM から対象抽出）、`lib/settings.js`（設定参照）。静的資産は `images/`, `keymaps/`, `styles/` にある。対象 Inkdrop バージョンは `package.json` の `engines.inkdrop` で管理し、現在は v6 系を想定。
