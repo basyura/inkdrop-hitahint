@@ -148,6 +148,68 @@
 
 ---
 
+# preview mode スクロール後の hint 表示対応計画
+
+## 背景
+
+- preview mode でノート先頭を表示している場合は表示範囲内リンクの hint が表示される
+- preview mode でスクロール後に表示されるリンクの hint が表示されない
+- 表示位置の問題か、対象抽出の問題かを切り分ける必要がある
+
+## 調査メモ
+
+- [x] preview mode のリンク抽出は `lib/extractor.js` の `#extractFromPreview()` から `#extractTargets()` を通っている
+- [x] 現在の可視判定は `.mde-preview` の `getBoundingClientRect().y` と `pane.clientHeight` を基準にしている
+- [x] preview のスクロール位置によって `.mde-preview` の矩形が移動する DOM 構造では、実際に viewport 内へ表示されたリンクでも下端判定から漏れる可能性が高い
+- [x] hint の配置は `#app-container` 基準の絶対配置で、preview 側のスクロールとは別基準になっている
+- [x] 初回修正では `.mde-preview` の矩形を可視範囲に含めていたため、preview の実スクロール親とずれて画面上部のリンクだけが抽出されるケースが残った
+
+## 対応方針
+
+1. 表示対象の判定
+
+- [x] 対象要素の `getBoundingClientRect()` を viewport と交差判定する
+- [x] pane 自体の表示矩形とも交差させ、pane の表示範囲外にある要素は除外する
+- [x] 表示範囲外の hint 用 `span` は生成しない
+
+2. hint 配置
+
+- [x] hint overlay を viewport 基準の配置へ寄せる
+- [x] 対象要素が表示範囲外、または座標が取れない場合は `createHint()` で `null` を返す
+- [x] `#app-container` の `scrollTop` に依存しない配置にする
+
+3. 周辺不具合の補正
+
+- [x] `.link-compact-mark` に変更済みの short link 抽出に合わせて open 判定も更新する
+- [x] `ele.title = "Back"` の代入を比較に修正する
+
+## 修正案
+
+- `lib/extractor.js`
+  - `#extractTargets()` の可視判定を `paneRect.y + pane.clientHeight` から、viewport と overflow で表示を切る祖先要素の交差判定へ変更する
+  - 要素矩形が `width` / `height` を持たない場合は除外する
+
+- `lib/hitahint.js`
+  - `.hitahint` コンテナを viewport 基準で配置する前提に合わせ、hint 座標を `rect.top` / `rect.left` から算出する
+  - 表示範囲外の要素は `createHint()` で `null` を返して span を生成しない
+  - 画面端にかかる表示範囲内要素の hint は viewport 内へ丸めて表示する
+  - short link の class 判定を `.link-compact-mark` と `.short-link-mark` の両方に対応させる
+  - Back 判定の代入を比較へ修正する
+
+## 完了条件
+
+- [ ] preview mode でスクロール後に表示範囲内のリンク hint が生成される
+- [x] 表示範囲外のリンク hint は生成されない
+- [ ] editor mode / note list / sidebar の hint 表示に明らかな副作用がない
+- [x] 構文確認が通る
+
+## 確認結果
+
+- [x] `node --check lib/extractor.js`
+- [x] `node --check lib/hitahint.js`
+- [x] `npm_config_cache=/tmp/hitahint-npm-cache npm pack --dry-run`
+- [ ] Inkdrop 実機で preview mode スクロール後の hint 表示を確認する
+
 # npm 配布ファイル整理計画
 
 ## 背景
