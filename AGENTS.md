@@ -27,6 +27,7 @@ When you add scripts, expose them through `package.json` so contributors have a 
 ## Coding Style & Naming Conventions
 
 Follow the existing JavaScript style and `.prettierrc`: 2-space indentation, semicolons, double quotes, trailing commas in ES5-compatible places, and `printWidth: 100`. Keep module filenames lowercase, matching the current pattern such as `lib/extractor.js`. Prefer small classes with focused responsibilities and keep Inkdrop-specific DOM selectors close to the logic that uses them.
+After editing files, format them according to `.prettierrc` before finishing the task.
 
 ## Testing Guidelines
 
