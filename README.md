@@ -12,6 +12,10 @@ hit a hint for preview mode.
 
 ![Screenshot](https://raw.githubusercontent.com/basyura/inkdrop-hitahint/master/images/preview.png)
 
+## Requirements
+
+- Inkdrop v6 or later
+
 ## Install
 
 ```

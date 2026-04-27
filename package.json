@@ -1,10 +1,10 @@
 {
   "name": "hitahint",
   "main": "./lib/hitahint",
-  "version": "0.8.0",
+  "version": "1.0.0",
   "description": "hit a hint",
   "keywords": [],
-  "repository": "git@github.com:basyura/inkdrop-hitahint.git",
+  "repository": "https://github.com/basyura/inkdrop-hitahint.git",
   "license": "MIT",
   "engines": {
     "inkdrop": "^6.0.0"
