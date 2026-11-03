@@ -1,42 +1,43 @@
-# Repository Guidelines
+# リポジトリのガイドライン
 
-## Plan
+## 計画
 
-- 修正を始める前に計画をマークダウンファイルで .plans フォルダ配下に日本語で生成してください。
-- 計画のファイル名は連番とし、1つ目を 001 始まりとして修正にあった適切なファイル名としてください。
-- 具体的なファイル編集をする前に、修正案を提示すること。
-- 指示があるまで新しい計画ファイルを作成せず、このセッションで使用する計画ファイルが明示されている場合のみその計画に反映すること。
-- このセッションで使用する計画ファイルが未指定の場合は、既存の計画ファイルを勝手に選んで更新せず、どの計画ファイルを使うか確認すること。
-- API に関しては https://github.com/inkdropapp/api-docs/ サイトを確認すること。特に、inkdrop v5 から v6 への plugin アップデートに関しては https://github.com/inkdropapp/api-docs/blob/main/src/app/appendix/plugin-migration-from-v5-to-v6/page.mdx を参照すること。
+- 修正を始める前に、`.plans` フォルダー配下に日本語の Markdown ファイルで計画を作成してください。
+- 計画ファイル名は連番にし、最初の番号は `001` としてください。修正内容に合った名前を付けてください。
+- ファイルを具体的に編集する前に、修正案を提示してください。
+- 指示があるまで新しい計画ファイルを作成しないでください。このセッションで使用する計画ファイルが明示されている場合のみ、そのファイルに反映してください。
+- このセッションで使用する計画ファイルが未指定の場合は、既存の計画ファイルを選んで更新せず、どの計画ファイルを使うか確認してください。
+- API に関する変更では <https://github.com/inkdropapp/api-docs/> を確認してください。特に Inkdrop v5 から v6 へのプラグイン更新では、<https://github.com/inkdropapp/api-docs/blob/main/src/app/appendix/plugin-migration-from-v5-to-v6/page.mdx> を参照してください。
 
-## Project Structure & Module Organization
+## プロジェクトの構成とモジュール
 
-This repository is a small Inkdrop plugin. The package entry point is `lib/hitahint.js`, which activates the command, renders hints, and handles keyboard input. DOM target collection lives in `lib/extractor.js`, and reactive config access lives in `lib/settings.js`. The editor integration targets CodeMirror 6, so editor-facing changes should follow CM6 DOM and API behavior. Static assets are kept in `images/`, keyboard mappings in `keymaps/`, and styles in `styles/`. Use `README.md` for user-facing behavior and installation notes.
+このリポジトリは小規模な Inkdrop プラグインです。パッケージのエントリーポイントは `lib/hitahint.js` で、コマンドの有効化、ヒントの表示、キー入力の処理を行います。DOM の対象要素の収集は `lib/extractor.js`、リアクティブな設定へのアクセスは `lib/settings.js` にあります。エディター統合の対象は CodeMirror 6 です。エディター関連の変更では、CM6 の DOM と API の仕様に従ってください。静的アセットは `images/`、キーマップは `keymaps/`、スタイルは `styles/` に置いています。ユーザー向けの動作説明とインストール方法には `README.md` を使用してください。
 
-## Build, Test, and Development Commands
+## ビルド、テスト、開発コマンド
 
-There is no build step or automated test script defined in `package.json` at the moment. Use these commands during development:
+現時点では、`package.json` にビルド手順や自動テスト用のスクリプトは定義されていません。開発時には次のコマンドを使用してください。
 
-- `npm install`: install local metadata dependencies and keep `package-lock.json` in sync.
-- `npm pack`: create a distributable package to verify published contents.
-- `ipm install`: install the plugin into Inkdrop locally.
-- `ipm link` or Inkdrop developer loading: use while iterating on the plugin in a local Inkdrop environment.
+- `npm install`: ローカルのメタデータ用依存関係をインストールし、`package-lock.json` を同期します。
+- `npm pack`: 配布パッケージを作成し、公開対象のファイルを確認します。
+- `ipm install`: プラグインを Inkdrop にローカルインストールします。
+- `ipm link` または Inkdrop の開発者向け読み込み機能: 開発中にプラグインを読み込みます。
 
-When you add scripts, expose them through `package.json` so contributors have a single entry point.
+スクリプトを追加する場合は、開発者が共通の手順で実行できるように `package.json` に登録してください。
 
-## Coding Style & Naming Conventions
+## コーディング規約と命名規則
 
-Follow the existing JavaScript style and `.prettierrc`: 2-space indentation, semicolons, double quotes, trailing commas in ES5-compatible places, and `printWidth: 100`. Keep module filenames lowercase, matching the current pattern such as `lib/extractor.js`. Prefer small classes with focused responsibilities and keep Inkdrop-specific DOM selectors close to the logic that uses them.
-After editing files, format them according to `.prettierrc` before finishing the task.
+既存の JavaScript の書式と `.prettierrc` に従ってください。インデントには半角スペース 2 個を使い、文末にはセミコロンを付け、文字列にはダブルクォートを使ってください。末尾のカンマは ES5 と互換性のある位置に付け、`arrowParens` は `"always"` にしてください。`printWidth` は `.prettierrc` の設定値に従ってください。モジュールのファイル名は `lib/extractor.js` のように小文字にしてください。クラスごとの責務を絞り、Inkdrop 固有の DOM セレクターは、それを使う処理の近くに置いてください。
 
-## Testing Guidelines
+ファイルを編集した後、作業を終える前に `.prettierrc` の設定に従って整形してください。
 
-This repository currently has no automated tests. Validate changes manually inside Inkdrop, covering preview mode, editor mode, sidebar navigation, note list navigation, and configurable `hintcharacters`. If you add tests, place them under `test/` or `spec/` and mirror the source filename, for example `spec/extractor.spec.js`.
+## テスト方針
 
-## Commit & Pull Request Guidelines
+このリポジトリには現在、自動テストがありません。変更は Inkdrop 上で手動確認してください。プレビュー、エディター、サイドバー、ノート一覧の各画面と、設定可能な `hintcharacters` を確認します。テストを追加する場合は `test/` または `spec/` に置き、`spec/extractor.spec.js` のようにソースファイルに対応した名前にしてください。
 
-Recent commits use short, imperative subjects such as `Prepare v0.8.0 release` and `improved readme`. Keep commit titles concise, describe one logical change per commit, and avoid mixing refactors with behavior changes. Pull requests should include a brief summary, manual verification steps, linked issues when applicable, and screenshots or GIFs for any UI-visible change in Inkdrop.
+## コミットとプルリクエストのガイドライン
 
-## Inkdrop Plugin Notes
+直近のコミットでは、`Prepare v0.8.0 release` や `improved readme` のような、短く命令形のタイトルが使われています。コミットタイトルは簡潔にし、1 つの変更内容を表してください。リファクタリングと動作変更を同じコミットに混在させないでください。プルリクエストには、概要、手動確認の手順、関連する issue へのリンクを記載してください。UI に見た目の変更がある場合は、スクリーンショットまたは GIF を添付してください。
 
-Target compatibility is declared in `package.json` under `engines.inkdrop` and should be updated deliberately. This plugin assumes CodeMirror 6 in editor mode, so changes around `.cm-url`, marks, or editor selection logic should be validated against the current CM6-based Inkdrop UI before releasing.
+## Inkdrop プラグインに関する注意事項
+
+Inkdrop の対応バージョンは `package.json` の `engines.inkdrop` で宣言されています。変更時は互換性への影響を考慮してください。このプラグインはエディターモードで CodeMirror 6 を前提としています。`.cm-url`、マーク、エディター選択に関する変更は、リリース前に現在の CM6 ベースの Inkdrop UI で確認してください。
